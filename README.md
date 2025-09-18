@@ -1,163 +1,80 @@
-# 📊 Customer Churn Data Analysis
+# 📊 Telco Customer Churn Analysis & Dashboard
 
-## 🎯 Project Overview
-A comprehensive data analysis project exploring customer churn patterns in a telecom company. This project focuses on identifying key factors that influence customer retention through statistical analysis and data visualization.
+![Power BI](https://img.shields.io/badge/Tool-Power%20BI-yellow) 
+![Python](https://img.shields.io/badge/Language-Python-blue) 
+![Status](https://img.shields.io/badge/Project-Completed-brightgreen)
 
-**Business Impact:** Identified **5 critical factors** affecting customer churn and provided **actionable insights** that could reduce churn by **25%** and save **$2.3M annually**.
+## 📌 Project Overview
+This project analyzes customer churn for a fictional Telco company.  
+The goal is to **identify key drivers of churn** and present insights in both **Python (EDA)** and a **Power BI dashboard**.  
 
-## 📈 Key Findings
-- **Month-to-month contracts** show **42% churn rate** vs 3% for two-year contracts
-- **Fiber optic customers** churn **30% more** than DSL users
-- **Electronic check payment** users have **45% higher churn**
-- **New customers** (0-1 year) are **most vulnerable** with 50%+ churn rate
-- **High monthly charges** strongly correlate with customer churn
-
-## 🛠️ Technologies Used
-- **Python**: Pandas, NumPy for data manipulation
-- **Visualization**: Matplotlib, Seaborn, Plotly for interactive charts
-- **Statistical Analysis**: Correlation analysis, Chi-square tests
-- **Business Intelligence**: Customer segmentation and profiling
-
-## 📊 Dataset Information
-- **Source**: Telecom Customer Dataset
-- **Size**: 7,043 customers with 21 features
-- **Scope**: Customer demographics, services, billing, and churn status
-- **Time Period**: Historical customer data
-
-## 🔍 Analysis Highlights
-
-### 1. Customer Segmentation Analysis
-- **High-Risk Segment**: Month-to-month, Fiber optic, Electronic check users
-- **Stable Segment**: Long-term contract holders with multiple services
-- **Revenue Impact**: High-value customers show concerning churn patterns
-
-### 2. Service Usage Insights
-- **Internet Service Impact**: Fiber optic = 42% churn, DSL = 20% churn
-- **Contract Type**: Strong predictor of customer loyalty
-- **Payment Behavior**: Payment method significantly affects retention
-
-### 3. Financial Analysis
-- **Revenue at Risk**: $2.3M annually from churning customers
-- **Customer Lifetime Value**: Analysis by customer segments
-- **Pricing Sensitivity**: Monthly charges vs retention correlation
-
-## 📋 Business Recommendations
-
-### 🚨 Immediate Actions (0-30 days)
-1. **Contract Incentives**: Offer 15% discount for annual contracts
-2. **Payment Migration**: Move electronic check users to auto-pay
-3. **Fiber Service Review**: Investigate service quality issues
-
-### 📈 Strategic Initiatives (30-90 days)
-1. **Loyalty Programs**: Reward customers with >12 months tenure
-2. **Service Bundling**: Increase customer stickiness with packages
-3. **Pricing Strategy**: Review fiber optic pricing competitiveness
-
-## 📁 Project Structure
-```
-customer_churn_analysis/
-├── data/
-│   └── sample_data.csv
-├── notebooks/
-│   ├── 01_data_exploration.ipynb
-│   ├── 02_customer_segmentation.ipynb
-│   └── 03_business_insights.ipynb
-├── src/
-│   ├── data_analysis.py
-│   └── visualization.py
-├── reports/
-│   ├── executive_summary.md
-│   └── detailed_analysis.pdf
-├── images/
-│   ├── churn_by_contract.png
-│   └── revenue_analysis.png
-├── requirements.txt
-└── README.md
-```
-
-## 🏃‍♂️ How to Run
-
-### Prerequisites
-```bash
-pip install -r requirements.txt
-```
-
-### Step-by-Step Analysis
-```bash
-# 1. Clone the repository
-git clone https://github.com/YourUsername/customer-churn-analysis.git
-cd customer-churn-analysis
-
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 3. Run analysis notebooks
-jupyter notebook notebooks/01_data_exploration.ipynb
-
-# 4. Generate insights
-python src/data_analysis.py
-
-# 5. Create visualizations
-python src/visualization.py
-```
-
-## 📊 Key Visualizations
-
-### Customer Distribution by Risk Factors
-- Contract type vs churn rate analysis
-- Payment method impact visualization
-- Service usage pattern charts
-
-### Financial Impact Analysis
-- Revenue loss by customer segment
-- Monthly charges distribution analysis
-- Customer lifetime value visualization
-
-### Trend Analysis
-- Churn rate by tenure groups
-- Service adoption vs retention patterns
-- Geographic/demographic insights
-
-## 💡 Analytical Insights
-
-### Statistical Findings
-- **Chi-square test**: Contract type significantly affects churn (p < 0.001)
-- **Correlation analysis**: Monthly charges show 0.19 correlation with churn
-- **Segmentation**: 3 distinct customer risk profiles identified
-
-### Customer Profiles
-- **Loyalists** (60%): Long-term, low churn, high value
-- **At-Risk** (25%): High charges, new customers, service issues
-- **Price-Sensitive** (15%): Low charges, basic services, stable
-
-## 🎯 Business Impact Summary
-
-### Cost Savings Potential
-- **Immediate**: $500K annual savings from contract incentives
-- **Medium-term**: $1.2M savings from payment method migration  
-- **Long-term**: $2.3M+ from comprehensive retention strategy
-
-### Customer Retention Strategy
-- **Targeted approach** for high-risk segments
-- **Proactive intervention** for new customers
-- **Value enhancement** for loyal customers
-
-## 🔮 Future Analysis Opportunities
-- [ ] Seasonal churn pattern analysis
-- [ ] Geographic market analysis
-- [ ] Customer satisfaction correlation study
-- [ ] Competitive analysis integration
-- [ ] Real-time churn monitoring dashboard
-
-## 👨‍💻 Author
-**Mohan Nellore**  
-Data Analyst | Business Intelligence | Data Visualization  
-Portfolio: https://mohannellore.github.io/  
-LinkedIn: https://linkedin.com/in/mohan-nlr
-
-## 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+Churn is a critical business problem — retaining customers is often cheaper than acquiring new ones.  
+By understanding the factors influencing churn, businesses can reduce customer loss and improve profitability.
 
 ---
-*This project demonstrates expertise in data analysis, statistical interpretation, and business strategy - essential skills for data analyst roles.*
 
+## 🗂️ Dataset
+- **Source**: Telco Customer Churn dataset (CSV file).  
+- **Rows**: ~7,000 customers  
+- **Columns**: Customer demographics, account information, services subscribed, billing, and churn status.  
+- **Target Variable**: `Churn` (Yes/No)
+
+Key fields include:
+- **Demographics**: Gender, SeniorCitizen, Partner, Dependents  
+- **Services**: InternetService, OnlineSecurity, StreamingTV, etc.  
+- **Billing**: Contract, PaymentMethod, MonthlyCharges, TotalCharges  
+- **Tenure**: Number of months customer stayed with the company  
+
+---
+
+## 🔧 Tools & Technologies
+- **Python** → Data cleaning, preprocessing, and exploratory data analysis (EDA)  
+- **Pandas, Matplotlib, Seaborn** → Data wrangling & visualization  
+- **Power BI** → Interactive dashboard for churn analysis  
+- **DAX** → Custom measures (Churn Rate, Avg Tenure, etc.)
+
+---
+
+## 📊 Power BI Dashboard
+The interactive dashboard highlights:
+1. **KPIs**: Total Customers, Churn Rate, Avg Tenure, Avg Monthly Charges  
+2. **Churn Distribution**: Percentage of customers who left vs stayed  
+3. **Churn by Contract**: Month-to-month customers show the highest churn  
+4. **Churn by Internet Service**: Fiber optic users are most likely to churn  
+5. **Payment Method**: Electronic check has the highest churn rate  
+6. **Heatmap**: Churn % by Contract & Internet Service  
+7. **Customer Detail Drillthrough**: View churn risk by individual customer  
+
+📸 *Screenshots of the dashboard should be added here* (replace with your PNG files).  
+
+---
+
+## 📈 Key Insights
+- Churn rate is **~26–27%** (1 in 4 customers leaves).  
+- **Month-to-month contracts** → highest churn, long-term contracts → lowest churn.  
+- **Fiber optic users** churn more compared to DSL users.  
+- **Electronic check payments** are strongly linked with churn.  
+- Customers with **higher monthly charges** and **lower tenure** are more likely to churn.  
+
+---
+
+## 🎯 Business Recommendations
+- Promote **long-term contracts** with discounts.  
+- Focus retention on **fiber optic users, senior citizens, and electronic check payers**.  
+- Improve **new customer onboarding** (early tenure customers churn more).  
+- Review **pricing strategy** for high-charge plans.  
+
+---
+
+## 🚀 How to Run the Project
+1. **Python EDA Notebook**
+   - Open `Telco_Customer_Churn_Analysis.ipynb`  
+   - Run step-by-step to see data cleaning, visualizations, and insights  
+
+2. **Power BI Dashboard**
+   - Open `Telco_Customer_Churn.pbix` in Power BI Desktop  
+   - Interact with slicers (Contract, InternetService, Gender, etc.)  
+
+---
+
+## 📂 Repository Structure
