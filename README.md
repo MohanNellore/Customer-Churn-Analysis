@@ -1,80 +1,100 @@
-# 📊 Telco Customer Churn Analysis & Dashboard
+# Telco Customer Churn Analysis
 
-![Power BI](https://img.shields.io/badge/Tool-Power%20BI-yellow) 
-![Python](https://img.shields.io/badge/Language-Python-blue) 
-![Status](https://img.shields.io/badge/Project-Completed-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
+![pandas](https://img.shields.io/badge/pandas-data%20analysis-150458)
+![Jupyter](https://img.shields.io/badge/Jupyter-notebook-F37626)
+![Status](https://img.shields.io/badge/status-completed-brightgreen)
 
-## 📌 Project Overview
-This project analyzes customer churn for a fictional Telco company.  
-The goal is to **identify key drivers of churn** and present insights in both **Python (EDA)** and a **Power BI dashboard**.  
+Exploratory data analysis of **7,043 telecom customers** to find out **who churns and why**, and what a business could do about it. Done in Python with pandas, Matplotlib and Seaborn.
 
-Churn is a critical business problem — retaining customers is often cheaper than acquiring new ones.  
-By understanding the factors influencing churn, businesses can reduce customer loss and improve profitability.
+## Business problem
 
----
+Keeping a customer is usually cheaper than winning a new one. About **1 in 4 customers (26.5%) left** in this dataset, so the question is: which customers are most at risk, and what do they have in common?
 
-## 🗂️ Dataset
-- **Source**: Telco Customer Churn dataset (CSV file).  
-- **Rows**: ~7,000 customers  
-- **Columns**: Customer demographics, account information, services subscribed, billing, and churn status.  
-- **Target Variable**: `Churn` (Yes/No)
+## Key findings
 
-Key fields include:
-- **Demographics**: Gender, SeniorCitizen, Partner, Dependents  
-- **Services**: InternetService, OnlineSecurity, StreamingTV, etc.  
-- **Billing**: Contract, PaymentMethod, MonthlyCharges, TotalCharges  
-- **Tenure**: Number of months customer stayed with the company  
+| Finding | Evidence |
+|---|---|
+| **Contract type is the strongest signal** | Month-to-month customers churn at **42.7%**, one-year at **11.3%**, two-year at **2.8%** |
+| **Fiber optic customers churn the most** | **41.9%** vs 19.0% for DSL and 7.4% for customers with no internet |
+| **Electronic check payers leave far more often** | **45.3%** churn, compared with 15-19% for every other payment method |
+| **New customers are the most fragile** | Churned customers stayed **18 months** on average vs **37.6** for loyal ones; customers in their first 6 months churn at **52.9%** |
+| **Higher bills, higher churn** | Average monthly charge is **$74.40** for churned customers vs **$61.30** for those who stayed |
+| **Senior citizens churn much more** | **41.7%** vs 23.6% for non-seniors |
+| **Worst combination** | Month-to-month **and** fiber optic: **54.6%** churn across 2,128 customers |
+| **Gender makes no real difference** | 26.9% (female) vs 26.2% (male) |
 
----
+## Charts
 
-## 🔧 Tools & Technologies
-- **Python** → Data cleaning, preprocessing, and exploratory data analysis (EDA)  
-- **Pandas, Matplotlib, Seaborn** → Data wrangling & visualization  
-- **Power BI** → Interactive dashboard for churn analysis  
-- **DAX** → Custom measures (Churn Rate, Avg Tenure, etc.)
+<p align="center">
+  <img src="images/churn_distribution.png" alt="Overall churn distribution" width="38%">
+  <img src="images/churn_by_payment_method.png" alt="Churn by payment method" width="58%">
+</p>
+<p align="center">
+  <img src="images/churn_heatmap_contract_internet.png" alt="Churn rate by contract and internet service" width="48%">
+  <img src="images/tenure_distribution.png" alt="Tenure distribution of churned vs retained customers" width="48%">
+</p>
 
----
+## Business recommendations
 
-## 📊 Power BI Dashboard
-The interactive dashboard highlights:
-1. **KPIs**: Total Customers, Churn Rate, Avg Tenure, Avg Monthly Charges  
-2. **Churn Distribution**: Percentage of customers who left vs stayed  
-3. **Churn by Contract**: Month-to-month customers show the highest churn  
-4. **Churn by Internet Service**: Fiber optic users are most likely to churn  
-5. **Payment Method**: Electronic check has the highest churn rate  
-6. **Heatmap**: Churn % by Contract & Internet Service  
-7. **Customer Detail Drillthrough**: View churn risk by individual customer  
+- **Move customers onto longer contracts** with a discount or perk. Contract length separates churners from loyal customers more than anything else.
+- **Look at fiber optic quality and pricing.** Fiber users are charged more and churn twice as often as DSL users.
+- **Nudge electronic-check customers to automatic payment** (card or bank transfer), which has less than half the churn.
+- **Invest in the first 6 months.** Onboarding calls, check-ins or a first-year offer target the highest-risk window.
+- **Run a retention offer for senior citizens**, who leave at almost twice the rate of other customers.
 
-📸 *Screenshots of the dashboard should be added here* (replace with your PNG files).  
+## Dataset
 
----
+[IBM Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) sample dataset (public, fictional telecom company): **7,043 customers, 21 columns**.
 
-## 📈 Key Insights
-- Churn rate is **~26–27%** (1 in 4 customers leaves).  
-- **Month-to-month contracts** → highest churn, long-term contracts → lowest churn.  
-- **Fiber optic users** churn more compared to DSL users.  
-- **Electronic check payments** are strongly linked with churn.  
-- Customers with **higher monthly charges** and **lower tenure** are more likely to churn.  
+| Group | Columns |
+|---|---|
+| Demographics | `gender`, `SeniorCitizen`, `Partner`, `Dependents` |
+| Services | `PhoneService`, `MultipleLines`, `InternetService`, `OnlineSecurity`, `OnlineBackup`, `DeviceProtection`, `TechSupport`, `StreamingTV`, `StreamingMovies` |
+| Account and billing | `tenure`, `Contract`, `PaperlessBilling`, `PaymentMethod`, `MonthlyCharges`, `TotalCharges` |
+| Target | `Churn` (Yes / No) |
 
----
+## Method
 
-## 🎯 Business Recommendations
-- Promote **long-term contracts** with discounts.  
-- Focus retention on **fiber optic users, senior citizens, and electronic check payers**.  
-- Improve **new customer onboarding** (early tenure customers churn more).  
-- Review **pricing strategy** for high-charge plans.  
+1. Convert `TotalCharges` to numeric. 11 blank values appear (new customers with tenure 0), and they are filled with the median.
+2. Turn `SeniorCitizen` from 0/1 into No/Yes so it reads like the other columns.
+3. Drop `customerID`, which carries no information for analysis.
+4. Merge "No internet service" and "No phone service" into "No".
+5. Check for missing values and duplicates, then save the cleaned data to `data/processed/`.
+6. Explore churn by demographics, services, billing and tenure, using counts, rates, distributions and heatmaps.
 
----
+## Project structure
 
-## 🚀 How to Run the Project
-1. **Python EDA Notebook**
-   - Open `Telco_Customer_Churn_Analysis.ipynb`  
-   - Run step-by-step to see data cleaning, visualizations, and insights  
+```
+customer-churn-analysis/
+├── data/
+│   ├── raw/telco_customer_churn.csv            # original dataset
+│   └── processed/telco_customer_churn_cleaned.csv   # output of the notebook
+├── notebooks/
+│   └── 01_telco_churn_eda.ipynb                # full analysis with charts
+├── images/                                     # charts used in this README
+├── requirements.txt
+└── README.md
+```
 
-2. **Power BI Dashboard**
-   - Open `Telco_Customer_Churn.pbix` in Power BI Desktop  
-   - Interact with slicers (Contract, InternetService, Gender, etc.)  
+## How to run
 
----
+```bash
+git clone https://github.com/MohanNellore/Customer-Churn-Analysis.git
+cd Customer-Churn-Analysis
+python -m venv venv
+source venv/bin/activate          # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+jupyter notebook notebooks/01_telco_churn_eda.ipynb
+```
 
-## 📂 Repository Structure
+Run all cells from top to bottom. The notebook reads from `data/raw/` and writes the cleaned file to `data/processed/`.
+
+## Next steps
+
+- Train a churn prediction model (for example logistic regression) and compare it with a baseline.
+- Build an interactive Power BI dashboard on the cleaned data.
+
+## Author
+
+**Mohan Nellore**: [GitHub](https://github.com/MohanNellore) | [Portfolio](https://mohannellore.github.io)
